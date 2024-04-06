@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+Todo list | <a href="{% url 'brain:task_create' %}">created</a>
+  {% csrf_token %}
+    {% for task in tasks %}
+        <li>{{ task.title }} | {{task.description}} | <a href="{%url 'brain:task_update' brain.pk %}">изменить</a> | <form method="POST" action="{% url 'brain:delete_task' brain.pk %}">{% csrf_token %}<button class="btn" type="submit">Удалить</button></form></li>
+    {% endfor  %}
+</body>
+</html>
